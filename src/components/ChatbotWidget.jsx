@@ -46,13 +46,23 @@ function ChatbotWidget() {
         try {
             setIsLoading(true)
 
-            const response = await fetch('http://localhost:3001/chat', {
+            let response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ message: trimmed }),
             })
+
+            if (!response.ok) {
+                response = await fetch('http://localhost:3001/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: trimmed }),
+                })
+            }
 
             const data = await response.json()
 
