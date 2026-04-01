@@ -4,8 +4,14 @@ const initialMessages = [
     {
         id: 1,
         role: 'ai',
-        text: 'Welcome to Concierge AI. Tell me your era, destination, and travel style.',
+        text: 'Welcome to TimeTravel Agency. How can I assist you today?',
     },
+]
+
+const suggestions = [
+    'Recommend me a destination',
+    'Prices',
+    'Tell me about Paris 1889',
 ]
 
 function ChatbotWidget() {
@@ -20,10 +26,8 @@ function ChatbotWidget() {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages, isOpen])
 
-    const handleSend = async (event) => {
-        event.preventDefault()
-
-        const trimmed = inputValue.trim()
+    const sendMessage = async (messageText) => {
+        const trimmed = messageText.trim()
         if (!trimmed || isLoading) {
             return
         }
@@ -70,6 +74,15 @@ function ChatbotWidget() {
         }
     }
 
+    const handleSend = async (event) => {
+        event.preventDefault()
+        await sendMessage(inputValue)
+    }
+
+    const handleSuggestionClick = async (suggestion) => {
+        await sendMessage(suggestion)
+    }
+
     return (
         <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
             <div
@@ -83,7 +96,7 @@ function ChatbotWidget() {
                     <button
                         type="button"
                         onClick={() => setIsOpen(false)}
-                        className="cursor-pointer rounded-full px-2 py-1 text-xs uppercase tracking-[0.16em] text-amber-200 transition hover:bg-amber-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95"
+                        className="gold-hover cursor-pointer rounded-full px-2 py-1 text-xs uppercase tracking-[0.16em] text-amber-200 duration-[600ms] ease-in-out hover:bg-amber-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95"
                     >
                         Close
                     </button>
@@ -103,7 +116,7 @@ function ChatbotWidget() {
                     ))}
                     {isLoading && (
                         <div className="mr-auto max-w-[85%] rounded-2xl border border-amber-300/30 bg-neutral-900 px-3 py-2 text-sm leading-relaxed text-neutral-100">
-                            Concierge AI is crafting your itinerary...
+                            AI is typing...
                         </div>
                     )}
                     {error && (
@@ -112,6 +125,22 @@ function ChatbotWidget() {
                         </div>
                     )}
                     <div ref={messagesEndRef} />
+                </div>
+
+                <div className="border-t border-amber-300/15 px-3 py-2">
+                    <div className="flex flex-wrap gap-2">
+                        {suggestions.map((suggestion) => (
+                            <button
+                                key={suggestion}
+                                type="button"
+                                onClick={() => handleSuggestionClick(suggestion)}
+                                disabled={isLoading}
+                                className="gold-hover cursor-pointer rounded-full border border-amber-300/30 bg-transparent px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-amber-200 duration-[600ms] ease-in-out hover:bg-amber-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
+                            >
+                                {suggestion}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 <form onSubmit={handleSend} className="border-t border-amber-300/20 p-3">
@@ -127,7 +156,7 @@ function ChatbotWidget() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="cursor-pointer rounded-xl bg-amber-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-black transition hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
+                            className="gold-hover cursor-pointer rounded-xl bg-amber-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-black duration-[600ms] ease-in-out hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
                         >
                             {isLoading ? 'Sending...' : 'Send'}
                         </button>
@@ -138,7 +167,7 @@ function ChatbotWidget() {
             <button
                 type="button"
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="ml-auto flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-amber-300/40 bg-black/95 text-amber-300 shadow-[0_12px_30px_rgba(0,0,0,0.6)] transition hover:scale-105 hover:bg-amber-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95"
+                className="gold-hover ml-auto flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-amber-300/40 bg-black/95 text-amber-300 shadow-[0_12px_30px_rgba(0,0,0,0.6)] duration-[600ms] ease-in-out hover:scale-105 hover:bg-amber-300/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95"
                 aria-label="Toggle chatbot"
             >
                 AI

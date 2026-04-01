@@ -9,7 +9,7 @@ function HeroSection() {
     }
 
     return (
-        <section id="hero" className="relative isolate h-screen min-h-[100svh] scroll-mt-24 overflow-hidden">
+        <section id="hero" data-reveal="section" className="relative isolate h-screen min-h-[50svh] scroll-mt-24 overflow-hidden">
             <div
                 className="absolute inset-0 -z-20 bg-cover bg-center"
                 style={{
@@ -35,7 +35,7 @@ function HeroSection() {
                     <button
                         type="button"
                         onClick={scrollToDestinations}
-                        className="mt-8 cursor-pointer rounded-full border border-amber-200/60 bg-amber-400 px-7 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-black shadow-[0_10px_24px_rgba(0,0,0,0.45)] transition duration-300 hover:-translate-y-0.5 hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95 sm:text-sm"
+                        className="gold-hover mt-8 cursor-pointer rounded-full border border-amber-200/60 bg-amber-400 px-7 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-black shadow-[0_10px_24px_rgba(0,0,0,0.45)] duration-[600ms] ease-in-out hover:-translate-y-0.5 hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95 sm:text-sm"
                     >
                         Explore Destinations
                     </button>

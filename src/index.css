@@ -22,3 +22,45 @@ body {
     transform: translateY(0);
   }
 }
+
+[data-reveal='section'] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+[data-reveal='section'].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal='card'] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+[data-reveal='card'].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gold-hover {
+  transition: box-shadow 0.6s ease-in-out, transform 0.6s ease-in-out,
+    background-color 0.6s ease-in-out, border-color 0.6s ease-in-out, color 0.6s ease-in-out;
+}
+
+.gold-hover:hover {
+  box-shadow: 0 0 0.85rem rgba(251, 191, 36, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  [data-reveal='section'],
+  [data-reveal='card'],
+  .gold-hover {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
