@@ -31,7 +31,7 @@ function DestinationsSection() {
     const [selectedDestination, setSelectedDestination] = useState(null)
 
     return (
-        <section id="destinations" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        <section id="destinations" className="mx-auto w-full max-w-6xl scroll-mt-24 px-4 py-20 sm:px-6 lg:px-8">
             <div className="mb-10 flex items-end justify-between gap-4">
                 <div>
                     <p className="text-xs uppercase tracking-[0.3em] text-amber-300">Destinations</p>
@@ -61,7 +61,7 @@ function DestinationsSection() {
                             <button
                                 type="button"
                                 onClick={() => setSelectedDestination(destination)}
-                                className="pt-1 text-xs uppercase tracking-[0.22em] text-amber-300 transition hover:text-amber-200"
+                                className="cursor-pointer pt-1 text-xs uppercase tracking-[0.22em] text-amber-300 transition hover:text-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95"
                             >
                                 View Details
                             </button>
@@ -78,7 +78,7 @@ function DestinationsSection() {
                         <button
                             type="button"
                             onClick={() => setSelectedDestination(null)}
-                            className="mt-6 rounded-full bg-amber-400 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-amber-300"
+                            className="mt-6 cursor-pointer rounded-full bg-amber-400 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-black transition hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95"
                         >
                             Close
                         </button>

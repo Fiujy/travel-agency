@@ -1,6 +1,15 @@
 function HeroSection() {
+    const scrollToDestinations = () => {
+        const section = document.getElementById('destinations')
+        if (!section) {
+            return
+        }
+
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+
     return (
-        <section id="hero" className="relative isolate h-screen min-h-[100svh] overflow-hidden">
+        <section id="hero" className="relative isolate h-screen min-h-[100svh] scroll-mt-24 overflow-hidden">
             <div
                 className="absolute inset-0 -z-20 bg-cover bg-center"
                 style={{
@@ -19,7 +28,11 @@ function HeroSection() {
                     <p className="mx-auto mt-5 max-w-2xl text-sm text-neutral-200 sm:text-lg">
                         Explore history like never before
                     </p>
-                    <button className="mt-8 rounded-full border border-amber-300/50 bg-amber-400 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-amber-300 sm:text-sm">
+                    <button
+                        type="button"
+                        onClick={scrollToDestinations}
+                        className="mt-8 cursor-pointer rounded-full border border-amber-300/50 bg-amber-400 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black transition hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/70 active:scale-95 sm:text-sm"
+                    >
                         Discover Destinations
                     </button>
                 </div>
